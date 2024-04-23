@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "weather-telegram-bot"
+version = "0.1.0"
+description = ""
+authors = ["pentagon846 <pentagon846@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+telebot = "^0.0.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
