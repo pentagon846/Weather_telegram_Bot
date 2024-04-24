@@ -1,6 +1,13 @@
+import os
 import requests
 import telebot
-from data import token, api_key
+# from data import token, api_key
+from dotenv import load_dotenv
+
+load_dotenv()
+
+token = os.getenv('TOKEN')
+api_key = os.getenv('API_KEY')
 
 bot = telebot.TeleBot(token)
 
@@ -28,7 +35,7 @@ def get_weather(message):
         temperature = weather_data['main']['temp']
         image = weather_data['weather'][0]['icon']
         icon_url = f"http://openweathermap.org/img/wn/{image}.png"
-        #print(image)
+        # print(image)
         description = weather_data['weather'][0]['description']
         humidity = weather_data['main']['humidity']
         pressure = weather_data['main']['pressure']
@@ -45,9 +52,12 @@ def get_weather(message):
         bot.reply_to(message,
                      f"Country: {country} \n Temp: in {city}: {temperature}°C \n {icon_url} \n  HUM: {humidity}% \n"
                      f" Pressure: {pressure}mmHg \n"
-                     f"{ wind_direction_str} \n Wind speed: {wind_speed} m/s \n {description}")
+                     f"{wind_direction_str} \n Wind speed: {wind_speed} m/s \n {description}")
     else:
         bot.send_message(message.chat.id, f"Sorry, I can't find {city} weather")
 
 
 bot.polling(none_stop=True)
+
+if __name__ == '__main__':
+    get_weather()
