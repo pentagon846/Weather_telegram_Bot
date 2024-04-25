@@ -1,1 +1,2 @@
-web: python main.py
+web: python main.py --port ${PORT:-8000} --host 0.0.0.0
+
